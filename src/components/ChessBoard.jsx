@@ -5,6 +5,7 @@ import { Chessboard } from 'react-chessboard'
 function ChessBoard() {
   const gameRef = useRef(new Chess())
   const [position, setPosition] = useState(gameRef.current.fen())
+  const [moveHistory, setMoveHistory] = useState([])
   const currentTurn = gameRef.current.turn() === 'w' ? 'Trắng' : 'Đen'
 
   const handleMove = (sourceSquare, targetSquare) => {
@@ -21,6 +22,13 @@ function ChessBoard() {
     }
 
     setPosition(game.fen())
+    setMoveHistory((prev) => [
+      ...prev,
+      {
+        san: move.san,
+        color: move.color,
+      },
+    ])
 
     return true
   }
@@ -45,6 +53,24 @@ function ChessBoard() {
             },
           }}
         />
+      </div>
+      <div className="chessboard-moves">
+        <h3 className="chessboard-moves-title">Lịch sử nước đi</h3>
+        {moveHistory.length === 0 ? (
+          <p className="chessboard-moves-empty">Chưa có nước đi nào.</p>
+        ) : (
+          <ol className="chessboard-moves-list">
+            {moveHistory.map((move, index) => (
+              <li key={index}>
+                <span className="chessboard-move-index">{index + 1}.</span>{' '}
+                <span className="chessboard-move-player">
+                  {move.color === 'w' ? 'Trắng' : 'Đen'}:
+                </span>{' '}
+                <span className="chessboard-move-san">{move.san}</span>
+              </li>
+            ))}
+          </ol>
+        )}
       </div>
     </section>
   )
