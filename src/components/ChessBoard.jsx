@@ -6,7 +6,26 @@ function ChessBoard() {
   const gameRef = useRef(new Chess())
   const [position, setPosition] = useState(gameRef.current.fen())
   const [moveHistory, setMoveHistory] = useState([])
-  const currentTurn = gameRef.current.turn() === 'w' ? 'Trắng' : 'Đen'
+  const game = gameRef.current
+  const currentTurn = game.turn() === 'w' ? 'Trắng' : 'Đen'
+
+  let statusText = ''
+  if (game.isGameOver()) {
+    if (game.isCheckmate()) {
+      const winner = game.turn() === 'w' ? 'Đen' : 'Trắng'
+      statusText = `Ván cờ đã kết thúc: chiếu hết, ${winner} thắng.`
+    } else if (game.isDraw()) {
+      statusText = 'Ván cờ đã kết thúc: hòa.'
+    } else {
+      statusText = 'Ván cờ đã kết thúc.'
+    }
+  } else if (game.isCheck()) {
+    statusText = `Đang chơi: ${currentTurn} đang ở thế bị chiếu.`
+  } else if (moveHistory.length === 0) {
+    statusText = 'Ván mới: Trắng đi trước.'
+  } else {
+    statusText = 'Đang chơi.'
+  }
 
   const handleMove = (sourceSquare, targetSquare) => {
     const game = gameRef.current
@@ -62,6 +81,7 @@ function ChessBoard() {
       <p className="chessboard-turn">
         Lượt đi hiện tại: <span>{currentTurn}</span>
       </p>
+      <p className="chessboard-status">{statusText}</p>
       <div className="chessboard-actions">
         <button
           type="button"

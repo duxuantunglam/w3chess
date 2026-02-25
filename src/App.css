@@ -57,6 +57,12 @@
     font-weight: 600;
 }
 
+.chessboard-status {
+    margin: 2px 0 10px;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
 .chessboard-actions {
     display: flex;
     gap: 8px;
