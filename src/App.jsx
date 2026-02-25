@@ -1,13 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import ChessBoard from './components/ChessBoard'
 import './App.css'
 
 function App() {
   return (
-    <>
-      
-    </>
+    <div className="app-container">
+      <header className="app-header">
+        <h1>w3chess</h1>
+      </header>
+
+      <main className="app-content">
+        <ChessBoard />
+      </main>
+    </div>
   )
 }
 
