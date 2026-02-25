@@ -19,7 +19,6 @@
     margin: 0;
     font-size: 2rem;
     letter-spacing: 0.08em;
-    text-transform: uppercase;
 }
 
 .app-content {
@@ -40,12 +39,6 @@
         0 18px 45px rgba(0, 0, 0, 0.4),
         0 0 0 1px rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(12px);
-}
-
-.chessboard-title {
-    margin-bottom: 12px;
-    font-size: 1rem;
-    opacity: 0.8;
 }
 
 .chessboard-wrapper {

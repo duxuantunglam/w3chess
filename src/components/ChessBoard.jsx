@@ -6,7 +6,6 @@ function ChessBoard() {
   const gameRef = useRef(new Chess())
   const [position, setPosition] = useState(gameRef.current.fen())
 
-  // Hàm xử lý logic nước đi với chess.js
   const handleMove = (sourceSquare, targetSquare) => {
     const game = gameRef.current
 
@@ -26,15 +25,24 @@ function ChessBoard() {
   }
 
   return (
-    <Chessboard
-      options={{
-        position,
-        boardOrientation: 'white',
-        allowDragging: true,
-        onPieceDrop: ({ sourceSquare, targetSquare }) =>
-          handleMove(sourceSquare, targetSquare),
-      }}
-    />
+    <section className="chessboard-card">
+      <div className="chessboard-wrapper">
+        <Chessboard
+          options={{
+            position,
+            boardOrientation: 'white',
+            allowDragging: true,
+            onPieceDrop: ({ sourceSquare, targetSquare }) =>
+              handleMove(sourceSquare, targetSquare),
+            boardStyle: {
+              width: '100%',
+              borderRadius: 12,
+              boxShadow: '0 16px 40px rgba(0, 0, 0, 0.6)',
+            },
+          }}
+        />
+      </div>
+    </section>
   )
 }
 
