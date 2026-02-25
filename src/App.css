@@ -46,3 +46,13 @@
     max-width: 520px;
     margin: 0 auto;
 }
+
+.chessboard-turn {
+    margin: 0 0 8px;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+.chessboard-turn span {
+    font-weight: 600;
+}

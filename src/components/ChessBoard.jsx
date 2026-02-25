@@ -5,6 +5,7 @@ import { Chessboard } from 'react-chessboard'
 function ChessBoard() {
   const gameRef = useRef(new Chess())
   const [position, setPosition] = useState(gameRef.current.fen())
+  const currentTurn = gameRef.current.turn() === 'w' ? 'Trắng' : 'Đen'
 
   const handleMove = (sourceSquare, targetSquare) => {
     const game = gameRef.current
@@ -26,6 +27,9 @@ function ChessBoard() {
 
   return (
     <section className="chessboard-card">
+      <p className="chessboard-turn">
+        Lượt đi hiện tại: <span>{currentTurn}</span>
+      </p>
       <div className="chessboard-wrapper">
         <Chessboard
           options={{
