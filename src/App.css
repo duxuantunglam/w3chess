@@ -57,6 +57,54 @@
     font-weight: 600;
 }
 
+.chessboard-actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.chessboard-button {
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    background: rgba(15, 23, 42, 0.9);
+    color: #e5e7eb;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition:
+        background 120ms ease-out,
+        transform 80ms ease-out,
+        box-shadow 120ms ease-out,
+        border-color 120ms ease-out;
+}
+
+.chessboard-button:hover:not(:disabled) {
+    background: rgba(30, 64, 175, 0.85);
+    border-color: rgba(96, 165, 250, 0.8);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.5);
+    transform: translateY(-1px);
+}
+
+.chessboard-button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.chessboard-button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.chessboard-button-danger {
+    border-color: rgba(248, 113, 113, 0.7);
+}
+
+.chessboard-button-danger:hover:not(:disabled) {
+    background: rgba(185, 28, 28, 0.9);
+    border-color: rgba(248, 113, 113, 0.9);
+    box-shadow: 0 4px 14px rgba(248, 113, 113, 0.4);
+}
+
 .chessboard-moves {
     margin-top: 12px;
     padding-top: 8px;

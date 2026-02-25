@@ -33,11 +33,48 @@ function ChessBoard() {
     return true
   }
 
+  const handleUndo = () => {
+    if (moveHistory.length === 0) return
+
+    const confirmed = window.confirm('Bạn có chắc chắn muốn hoàn tác nước đi cuối cùng không?')
+    if (!confirmed) return
+
+    const game = gameRef.current
+    game.undo()
+
+    setPosition(game.fen())
+    setMoveHistory((prev) => prev.slice(0, -1))
+  }
+
+  const handleRestart = () => {
+    const confirmed = window.confirm('Bạn có chắc chắn muốn bắt đầu lại ván cờ từ đầu không?')
+    if (!confirmed) return
+
+    const game = gameRef.current
+    game.reset()
+
+    setPosition(game.fen())
+    setMoveHistory([])
+  }
+
   return (
     <section className="chessboard-card">
       <p className="chessboard-turn">
         Lượt đi hiện tại: <span>{currentTurn}</span>
       </p>
+      <div className="chessboard-actions">
+        <button
+          type="button"
+          className="chessboard-button"
+          onClick={handleUndo}
+          disabled={moveHistory.length === 0}
+        >
+          Undo
+        </button>
+        <button type="button" className="chessboard-button chessboard-button-danger" onClick={handleRestart}>
+          Restart
+        </button>
+      </div>
       <div className="chessboard-wrapper">
         <Chessboard
           options={{
